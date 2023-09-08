@@ -50,6 +50,8 @@ $(function () {
 
     
   createCollectable("diamond", 430, 400, 1, 1)
+  createCollectable("diamond", 100, 100, 1, 1)
+  createCollectable("diamond", 1050, 450, 1, 1)
 
 
 
