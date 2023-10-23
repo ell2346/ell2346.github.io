@@ -1,0 +1,59 @@
+function getLetterGrade(score) {
+  if (score >= 90) {
+    return "A";
+  } else if (score >= 80) {
+    return "B";
+  } else if (score >= 70) {
+    return "C";
+  } else if (score >= 60) {
+    return "D";
+  } else {
+    return "F";
+  }
+}
+
+// Define the function to calculate the GPA
+function getGPA(grades) {
+  let total = 0;
+  for (let i = 0; i < grades.length; i++) {
+    total += grades[i];
+  }
+  return (total / grades.length).toFixed(2);
+}
+
+// Ask the user for their classes and test scores
+let classes = [];
+
+for (let i = 1; i <= 4; i++) {
+  let className = prompt(`Enter the name of class ${i}:`);
+  let grades = [];
+
+  for (let j = 1; j <= 4; j++) {
+    let score = parseFloat(prompt(`Enter your test score for test ${j} in ${className}:`));
+    grades.push(score);
+  }
+
+  classes.push({ name: className, grades: grades });
+}
+
+// Print the report card
+console.log("# REPORT CARD #");
+
+let totalGPA = 0;
+
+for (let i = 0; i < classes.length; i++) {
+  let className = classes[i].name;
+  let grades = classes[i].grades;
+  let average = (grades.reduce((a, b) => a + b, 0) / grades.length).toFixed(2);
+  let letterGrade = getLetterGrade(average);
+  let gpa = getGPA(grades);
+
+  console.log(`Class: ${className}`);
+  console.log(`Average: ${average}`);
+  console.log(`Letter Grade: ${letterGrade}`);
+  console.log(`GPA: ${gpa}`);
+
+  totalGPA += parseFloat(gpa);
+}
+
+console.log(`Overall GPA: ${(totalGPA / classes.length).toFixed(2)}`);
